@@ -1,0 +1,47 @@
+service: api-agendamento
+
+frameworkVersion: '^4.0.0'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  stage: dev
+  memorySize: 128
+  timeout: 10
+  environment:
+    NODE_ENV: development
+
+plugins:
+  - serverless-offline
+
+functions:
+  agendas:
+    handler: src/handler.handler
+    events:
+      - http:
+          path: agendas
+          method: get
+          cors: true
+
+  agendamento:
+    handler: src/handler.handler
+    events:
+      - http:
+          path: agendamento
+          method: post
+          cors: true
+
+package:
+  individually: true
+  patterns:
+    - '!node_modules/**'
+    - 'dist/**'
+    - 'src/**'
+    - 'package.json'
+    - 'tsconfig.json'
+
+custom:
+  serverless-offline:
+    httpPort: 3333
+    reloadHandler: true
