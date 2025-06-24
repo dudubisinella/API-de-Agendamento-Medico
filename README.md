@@ -34,7 +34,6 @@ src/
 ├── services/
 ├── routes/
 ├── utils/
-├── expressApp.ts
 ├── handler.ts          # usado para deploy AWS Lambda
 tests/
 ├── integration/
